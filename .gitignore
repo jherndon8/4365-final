@@ -1,0 +1,9 @@
+# PyCharm directories
+.idea
+venv
+
+# Configuration files
+config.ini
+
+# Selenium
+geckodriver.log
