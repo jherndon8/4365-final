@@ -1,0 +1,31 @@
+# NS File Scripting Commands
+
+# This is a simple ns script
+set ns [new Simulator]
+
+# include testbed specific commands
+source tb_compat.tcl
+
+# String variable for making lan
+set lanstr ""
+
+# Create multiple nodes
+for {set i 0} {$i < 4} {incr i} {
+    # "$" used for reference to ns, creates node, ex. node-0
+    set node($i) [$ns node]
+    # Add to string for making lan
+    append lanstr "$node($i) "
+    # Set node OS
+    tb-set-node-os $node($i) FC15RubOral
+    # Set node hardware
+    tb-set-hardware $node($i) d710
+}
+
+# Make lan
+set lan0 [$ns make-lan "$lanstr" 100Mb 0ms]
+
+# Enable static routing
+$ns rtproto Static
+
+# Start the simulator
+$ns run
