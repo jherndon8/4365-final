@@ -13,6 +13,7 @@ emulab_login_page = "https://www.emulab.net/login.php3"
 begin_exp_page = "https://www.emulab.net/beginexp.php"
 exp_page_base = "https://www.emulab.net/showexp.php3"
 
+
 # Check Login
 def login(driver):
     driver.get(emulab_login_page)
@@ -29,7 +30,7 @@ def new_experiment(driver):
     # Experiment description
     driver.find_element_by_name('formfields[exp_description]').send_keys(config['General']['description'])
     # NSFile submission
-    driver.find_element_by_name("exp_nsfile").send_keys(nsfile_dir + "sample.NSFile")
+    driver.find_element_by_name("exp_nsfile").send_keys(nsfile_dir + config['General']['nsfile'])
     # Submit form
     submit_button = driver.find_element_by_xpath("//*[@id=\"fullcontentbody\"]/form/table/tbody/tr[10]/td/b/input")
     submit_button.click()
@@ -69,7 +70,7 @@ def main(driver):
     # Log into Emulab
     login(driver)
     # Swap out experiment
-    swap_out_exp(driver)
+    new_experiment(driver)
 
 
 if __name__ == '__main__':
@@ -80,6 +81,6 @@ if __name__ == '__main__':
     # Gecko driver needs to be installed for Firefox
     # Place executable in PATH (/usr/bin/)
     # geckodriver releases: https://github.com/mozilla/geckodriver/releases
-    driver = webdriver.Firefox()
+    new_driver = webdriver.Firefox()
 
-    main(driver)
+    main(new_driver)
