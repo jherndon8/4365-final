@@ -6,21 +6,12 @@ import os
 import time
 from selenium import webdriver
 
-# Load configurations
-config = configparser.ConfigParser()
-config.read(os.getcwd() + os.path.sep + "config.ini")
 
 # Program variables
 nsfile_dir = os.getcwd() + os.path.sep + "nsfiles" + os.path.sep
 emulab_login_page = "https://www.emulab.net/login.php3"
 begin_exp_page = "https://www.emulab.net/beginexp.php"
-
-
-# Gecko driver needs to be installed for Firefox
-# Place executable in PATH (/usr/bin/)
-# geckodriver releases: https://github.com/mozilla/geckodriver/releases
-driver = webdriver.Firefox()
-
+exp_page_base = "https://www.emulab.net/showexp.php3"
 
 # Check Login
 def login(driver):
@@ -44,9 +35,51 @@ def new_experiment(driver):
     submit_button.click()
 
 
-# Log into Emulab
-login(driver)
-# Start new experiment
-new_experiment(driver)
+def swap_in_exp(driver):
+    exp_page = exp_page_base + "?pid={}&eid={}".format(config['General']['project'], config['General']['experiment'])
+    # Experiment page
+    driver.get(exp_page)
+    # Swap control page
+    driver.find_element_by_link_text("Swap Experiment In").click()
+    # Confirm swap
+    driver.find_element_by_name('confirmed').click()
 
-time.sleep(3)
+
+def cancel_swap(driver):
+    exp_page = exp_page_base + "?pid={}&eid={}".format(config['General']['project'], config['General']['experiment'])
+    # Experiment page
+    driver.get(exp_page)
+    # Swap control page
+    driver.find_element_by_link_text("Cancel Experiment Swapin").click()
+    # Confirm swap
+    driver.find_element_by_name('confirmed').click()
+
+
+def swap_out_exp(driver):
+    exp_page = exp_page_base + "?pid={}&eid={}".format(config['General']['project'], config['General']['experiment'])
+    # Experiment page
+    driver.get(exp_page)
+    # Swap control page
+    driver.find_element_by_link_text("Swap Experiment Out").click()
+    # Confirm swap out
+    driver.find_element_by_name('confirmed').click()
+
+
+def main(driver):
+    # Log into Emulab
+    login(driver)
+    # Swap out experiment
+    swap_out_exp(driver)
+
+
+if __name__ == '__main__':
+    # Load configurations
+    config = configparser.ConfigParser()
+    config.read(os.getcwd() + os.path.sep + "config.ini")
+
+    # Gecko driver needs to be installed for Firefox
+    # Place executable in PATH (/usr/bin/)
+    # geckodriver releases: https://github.com/mozilla/geckodriver/releases
+    driver = webdriver.Firefox()
+
+    main(driver)
