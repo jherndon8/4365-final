@@ -9,6 +9,7 @@ EXPERIMENT=cloudsurfing
 
 # Useful variables
 ELBA_REPO=https://github.com/coc-gatech-newelba/NewElbaAlpha.git
+XML_CONFIG=RUBBOS-4411-$PROJECT-$EXPERIMENT-$USER.xml
 
 
 # Make a user directory
@@ -33,24 +34,24 @@ cp /proj/Infosphere/shared_software/rubbos_orig_data.tar.gz /proj/Infosphere/$US
 
 # Describing the Experiment by editing/completing Experiment XML
 cd /proj/Infosphere/$USER/common/experiment_xml
-cp RUBBOS-1111-EMULAB-DEFAULT.xml RUBBOS-1111-EMULAB-$USER.xml
+cp RUBBOS-1111-EMULAB-DEFAULT.xml $XML_CONFIG
 
 
 # Replace xml values with name and experiment name
 # http://www.yourownlinux.com/2015/05/sed-command-in-linux-search-replace-patterns-in-file.html
 
-sed -i '' "/ <param name=\"EMULAB_EXPERIMENT_NAME\"/s/value=.*/value=\"$EXPERIMENT.infosphere.emulab.net\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"USERNAME\"/s/value=.*/value=\"$USER\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"WORK_HOME\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/rubbos\/rubbos_yasu\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"OUTPUT_HOME\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/rubbos\/rubbos_yasu\/$EXPERIMENT\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"RUBBOS_RESULTS_HOST\"/s/value=.*/value=\"$USER@users.emulab.net\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"RUBBOS_RESULTS_DIR_BASE\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/results\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"RUBBOS_RESULTS_PARSE\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/results\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
+sed -i '' "/ <param name=\"EMULAB_EXPERIMENT_NAME\"/s/value=.*/value=\"$EXPERIMENT.infosphere.emulab.net\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"USERNAME\"/s/value=.*/value=\"$USER\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"WORK_HOME\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/rubbos\/rubbos_yasu\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"OUTPUT_HOME\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/rubbos\/rubbos_yasu\/$EXPERIMENT\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"RUBBOS_RESULTS_HOST\"/s/value=.*/value=\"$USER@users.emulab.net\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"RUBBOS_RESULTS_DIR_BASE\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/results\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"RUBBOS_RESULTS_PARSE\"/s/value=.*/value=\"\/proj\/Infosphere\/$USER\/results\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
 
-sed -i '' "/ <param name=\"psMonitor\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"iostatMonitor\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"sarMonitor\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
-sed -i '' "/ <param name=\"XML_ENABLED\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/RUBBOS-1111-EMULAB-boots.xml
+sed -i '' "/ <param name=\"psMonitor\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"iostatMonitor\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"sarMonitor\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
+sed -i '' "/ <param name=\"XML_ENABLED\"/s/value=.*/value=\"false\"\/>/g" /proj/Infosphere/$USER/common/experiment_xml/$XML_CONFIG
 
 
 

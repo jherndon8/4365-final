@@ -43,7 +43,7 @@ def swap_in_exp(driver):
     # Swap control page
     driver.find_element_by_link_text("Swap Experiment In").click()
     # Confirm swap
-    driver.find_element_by_name('confirmed').click()
+    #driver.find_element_by_name('confirmed').click()
 
 
 def cancel_swap(driver):
