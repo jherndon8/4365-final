@@ -8,21 +8,21 @@
     <env>
       <!-- Experiment name on Emulab -->
       <!--<param name="EMULAB_EXPERIMENT_NAME" value="jkimball1111.infosphere.emulab.net"/>-->
-      <param name="EMULAB_EXPERIMENT_NAME" value="cloudsurfing.infosphere.emulab.net"/>
+      <param name="EMULAB_EXPERIMENT_NAME" value="FILL IN.infosphere.emulab.net"/>
 
       <!--<param name="USERNAME" value="jkimball"/>-->
-      <param name="USERNAME" value="boots"/>
+      <param name="USERNAME" value="FILL IN"/>
 
       <!-- Directories from which files are copied -->
 
       <!--<param name="WORK_HOME" value="/proj/Infosphere/jkimball/rubbos/rubbos_yasu"/>-->
-      <param name="WORK_HOME" value="/proj/Infosphere/boots/rubbos/rubbos_yasu"/>
+      <param name="WORK_HOME" value="FILL IN"/>
 
       <!--<param name="OUTPUT_HOME" value="/proj/Infosphere/jkimball/rubbos/rubbos_yasu/1111test"/>-->
-      <param name="OUTPUT_HOME" value="/proj/Infosphere/boots/rubbos/rubbos_yasu/cloudsurfing"/>
+      <param name="OUTPUT_HOME" value="FILL IN"/>
 
       <!--<param name="DATA_HOME" value="/proj/Infosphere/jkimball/softwares/data"/>-->
-      <param name="DATA_HOME" value="/proj/Infosphere/boots/softwares/data"/>
+      <param name="DATA_HOME" value="FILL IN"/>
 
       <!--<param name="SOFTWARE_HOME" value="/proj/Infosphere/jhpark/softwares/yasu"/>-->
       <param name="SOFTWARE_HOME" value="/mnt/softwares"/>
@@ -37,9 +37,9 @@
       
 
       <!-- Output directory for results of RUBBoS benchmark -->
-      <param name="RUBBOS_RESULTS_HOST" value="boots@users.emulab.net"/>
-      <param name="RUBBOS_RESULTS_DIR_BASE" value="/proj/Infosphere/boots/results"/>
-      <param name="RUBBOS_RESULTS_PARSE" value="/project/Infosphere/boots/results"/>
+      <param name="RUBBOS_RESULTS_HOST" value="jkimball@users.emulab.net"/>
+      <param name="RUBBOS_RESULTS_DIR_BASE" value="/proj/Infosphere/jkimball/results"/>
+      <param name="RUBBOS_RESULTS_PARSE" value="/project/Infosphere/jkimball/results/1111test"/>
 
       <!-- Target directories -->
       <param name="ELBA_TOP" value="/mnt/elba"/>
@@ -221,18 +221,17 @@
  
 
   </params>
-  <!--Control Node-->
+
   <instance name="CONTROL" type="control_server">
-    <target>node-0</target>
+    <target>node1</target>
     <action type="checkScp_exec" seq="1" template="../templates/DeployScript/check_scp.xsl" />
     <action type="emulabConf_exec" seq="2" template="../templates/DeployScript/emulab_config.xsl" />
     <action type="customization_exec" seq="5" template="../templates/DeployScript/customization.xsl" />
     <action type="rubbos_exec" seq="250" template="../templates/DeployScript/RUBBOSexecution.xsl" />
   </instance> 
-
-  <!--Benchmark Node-->
+  
   <instance name="BENCHMARK" type="benchmark_server">
-    <target>node-1</target>
+    <target>node2</target>
     <action type="rubbos_install" seq="21" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="install" seq="23" template="../templates/DeployScript/RUBBOS_CLIENTinstall.xsl" />
     <action type="configure" seq="105" template="../templates/DeployScript/RUBBOS_CLIENTconfigure.xsl" />
@@ -240,9 +239,8 @@
     <action type="rubbos_uninstall" seq="402" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
   </instance> 
   
-  <!--Client Nodes-->
-  <instance name="CLIENT0" type="client_server">
-    <target>node-2</target>
+  <instance name="CLIENT1" type="client_server">
+    <target>node3</target>
     <action type="rubbos_install" seq="22" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="install" seq="24" template="../templates/DeployScript/RUBBOS_CLIENTinstall.xsl" />
     <action type="configure" seq="106" template="../templates/DeployScript/RUBBOS_CLIENTconfigure.xsl" />
@@ -250,8 +248,8 @@
     <action type="rubbos_uninstall" seq="404" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
   </instance> 
  
-  <instance name="CLIENT1" type="client_server">
-    <target>node-3</target>
+  <instance name="CLIENT2" type="client_server">
+    <target>node4</target>
     <action type="rubbos_install" seq="22" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="install" seq="24" template="../templates/DeployScript/RUBBOS_CLIENTinstall.xsl" />
     <action type="configure" seq="106" template="../templates/DeployScript/RUBBOS_CLIENTconfigure.xsl" />
@@ -259,8 +257,8 @@
     <action type="rubbos_uninstall" seq="404" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
   </instance> 
   
-  <instance name="CLIENT2" type="client_server">
-    <target>node-4</target>
+  <instance name="CLIENT3" type="client_server">
+    <target>node5</target>
     <action type="rubbos_install" seq="22" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="install" seq="24" template="../templates/DeployScript/RUBBOS_CLIENTinstall.xsl" />
     <action type="configure" seq="106" template="../templates/DeployScript/RUBBOS_CLIENTconfigure.xsl" />
@@ -268,8 +266,8 @@
     <action type="rubbos_uninstall" seq="404" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
   </instance> 
 
-  <instance name="CLIENT3" type="client_server">
-    <target>node-5</target>
+  <instance name="CLIENT4" type="client_server">
+    <target>node6</target>
     <action type="rubbos_install" seq="22" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="install" seq="24" template="../templates/DeployScript/RUBBOS_CLIENTinstall.xsl" />
     <action type="configure" seq="106" template="../templates/DeployScript/RUBBOS_CLIENTconfigure.xsl" />
@@ -277,9 +275,8 @@
     <action type="rubbos_uninstall" seq="404" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
   </instance>
 
-  <!--Apache Nodes-->
-  <instance name="APACHE0" type="web_server">
-    <target>node-6</target>
+  <instance name="HTTPD" type="web_server">
+    <target>node7</target>
     <action type="install" seq="15" template="../templates/DeployScript/WEBinstall.xsl" />
     <action type="rubbos_install" seq="20" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="configure" seq="104" template="../templates/DeployScript/WEBconfigure.xsl" />
@@ -287,56 +284,10 @@
     <action type="stop" seq="301" template="../templates/DeployScript/WEBstop.xsl" />
     <action type="rubbos_uninstall" seq="405" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
     <action type="uninstall" seq="406" template="../templates/DeployScript/WEBuninstall.xsl" />
-  </instance>
-
-  <instance name="APACHE1" type="web_server">
-    <target>node-7</target>
-    <action type="install" seq="15" template="../templates/DeployScript/WEBinstall.xsl" />
-    <action type="rubbos_install" seq="20" template="../templates/DeployScript/RUBBOSinstall.xsl" />
-    <action type="configure" seq="104" template="../templates/DeployScript/WEBconfigure.xsl" />
-    <action type="ignition" seq="205" template="../templates/DeployScript/WEBignition.xsl" />
-    <action type="stop" seq="301" template="../templates/DeployScript/WEBstop.xsl" />
-    <action type="rubbos_uninstall" seq="405" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
-    <action type="uninstall" seq="406" template="../templates/DeployScript/WEBuninstall.xsl" />
-  </instance>
-
-  <instance name="APACHE2" type="web_server">
-    <target>node-8</target>
-    <action type="install" seq="15" template="../templates/DeployScript/WEBinstall.xsl" />
-    <action type="rubbos_install" seq="20" template="../templates/DeployScript/RUBBOSinstall.xsl" />
-    <action type="configure" seq="104" template="../templates/DeployScript/WEBconfigure.xsl" />
-    <action type="ignition" seq="205" template="../templates/DeployScript/WEBignition.xsl" />
-    <action type="stop" seq="301" template="../templates/DeployScript/WEBstop.xsl" />
-    <action type="rubbos_uninstall" seq="405" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
-    <action type="uninstall" seq="406" template="../templates/DeployScript/WEBuninstall.xsl" />
-  </instance>
-
-  <instance name="APACHE3" type="web_server">
-    <target>node-9</target>
-    <action type="install" seq="15" template="../templates/DeployScript/WEBinstall.xsl" />
-    <action type="rubbos_install" seq="20" template="../templates/DeployScript/RUBBOSinstall.xsl" />
-    <action type="configure" seq="104" template="../templates/DeployScript/WEBconfigure.xsl" />
-    <action type="ignition" seq="205" template="../templates/DeployScript/WEBignition.xsl" />
-    <action type="stop" seq="301" template="../templates/DeployScript/WEBstop.xsl" />
-    <action type="rubbos_uninstall" seq="405" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
-    <action type="uninstall" seq="406" template="../templates/DeployScript/WEBuninstall.xsl" />
-  </instance>
-
-  <!--Tomcat Nodes-->
-  <instance name="TOMCAT0" type="app_server">
-    <target>node-10</target>
-    <action type="install" seq="13" template="../templates/DeployScript/TOMCATinstall.xsl"/>
-    <action type="rubbos_install" seq="18" template="../templates/DeployScript/RUBBOSinstall.xsl" />
-    <action type="configure" seq="102" template="../templates/DeployScript/TOMCATconfigure.xsl" />
-    <action type="rubbosSL_configure" seq="107" template="../templates/DeployScript/RUBBOS_SERVLETconfigure.xsl" />
-    <action type="ignition" seq="203" template="../templates/DeployScript/TOMCATignition.xsl" />
-    <action type="stop" seq="303" template="../templates/DeployScript/TOMCATstop.xsl" />
-    <action type="rubbos_uninstall" seq="407" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
-    <action type="uninstall" seq="408" template="../templates/DeployScript/TOMCATuninstall.xsl" />
   </instance>
 
   <instance name="TOMCAT1" type="app_server">
-    <target>node-11</target>
+    <target>node8</target>
     <action type="install" seq="13" template="../templates/DeployScript/TOMCATinstall.xsl"/>
     <action type="rubbos_install" seq="18" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="configure" seq="102" template="../templates/DeployScript/TOMCATconfigure.xsl" />
@@ -347,8 +298,9 @@
     <action type="uninstall" seq="408" template="../templates/DeployScript/TOMCATuninstall.xsl" />
   </instance>
 
+<!--
   <instance name="TOMCAT2" type="app_server">
-    <target>node-12</target>
+    <target>node9</target>
     <action type="install" seq="13" template="../templates/DeployScript/TOMCATinstall.xsl"/>
     <action type="rubbos_install" seq="18" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="configure" seq="102" template="../templates/DeployScript/TOMCATconfigure.xsl" />
@@ -358,23 +310,11 @@
     <action type="rubbos_uninstall" seq="407" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
     <action type="uninstall" seq="408" template="../templates/DeployScript/TOMCATuninstall.xsl" />
   </instance>
+-->
 
-  <instance name="TOMCAT3" type="app_server">
-    <target>node-13</target>
-    <action type="install" seq="13" template="../templates/DeployScript/TOMCATinstall.xsl"/>
-    <action type="rubbos_install" seq="18" template="../templates/DeployScript/RUBBOSinstall.xsl" />
-    <action type="configure" seq="102" template="../templates/DeployScript/TOMCATconfigure.xsl" />
-    <action type="rubbosSL_configure" seq="107" template="../templates/DeployScript/RUBBOS_SERVLETconfigure.xsl" />
-    <action type="ignition" seq="203" template="../templates/DeployScript/TOMCATignition.xsl" />
-    <action type="stop" seq="303" template="../templates/DeployScript/TOMCATstop.xsl" />
-    <action type="rubbos_uninstall" seq="407" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
-    <action type="uninstall" seq="408" template="../templates/DeployScript/TOMCATuninstall.xsl" />
-  </instance>
-
-  <!--CJDBC Node-->
-  <instance name="CJDBC0" type="cjdbc_server">
+  <instance name="CJDBC" type="cjdbc_server">
     <swname>CJDBC_Controller</swname>
-    <target>node-14</target>
+    <target>node9</target>
     <action type="install" seq="12" template="../templates/DeployScript/CJDBC_CONTROLLERinstall.xsl" />
     <action type="rubbos_install" seq="17" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="ignition" seq="202" template="../templates/DeployScript/CJDBC_CONTROLLERignition.xsl" />
@@ -383,9 +323,20 @@
     <action type="uninstall" seq="410" template="../templates/DeployScript/CJDBC_CONTROLLERuninstall.xsl" />
   </instance>
 
-  <!--MySQL Node-->
-  <instance name="MYSQL0" type="db_server">
-    <target>node-15</target>
+  <instance name="MYSQL1" type="db_server">
+    <target>node10</target>
+    <action type="install" seq="11" template="../templates/DeployScript/MYSQLinstall.xsl" />
+    <action type="rubbos_install" seq="16" template="../templates/DeployScript/RUBBOSinstall.xsl" />
+    <action type="configure" seq="101" template="../templates/DeployScript/MYSQLconfigure.xsl" />
+    <action type="reset" seq="150" template="../templates/DeployScript/MYSQLreset.xsl" />
+    <action type="ignition" seq="201" template="../templates/DeployScript/MYSQLignition.xsl" />
+    <action type="stop" seq="305" template="../templates/DeployScript/MYSQLstop.xsl" />
+    <action type="rubbos_uninstall" seq="411" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
+    <action type="uninstall" seq="412" template="../templates/DeployScript/MYSQLuninstall.xsl" />
+  </instance>
+<!--
+  <instance name="MYSQL2" type="db_server">
+    <target>node13</target>
     <action type="install" seq="11" template="../templates/DeployScript/MYSQLinstall.xsl" />
     <action type="rubbos_install" seq="16" template="../templates/DeployScript/RUBBOSinstall.xsl" />
     <action type="configure" seq="101" template="../templates/DeployScript/MYSQLconfigure.xsl" />
@@ -396,6 +347,28 @@
     <action type="uninstall" seq="412" template="../templates/DeployScript/MYSQLuninstall.xsl" />
   </instance>
 
+  <instance name="MONITOR" type="monitor_server">
+    <target>node20</target>
+    <action type="install" seq="15" template="../templates/DeployScript/WEBinstall.xsl" />
+    <action type="rubbos_install" seq="20" template="../templates/DeployScript/RUBBOSinstall.xsl" />
+    <action type="configure" seq="104" template="../templates/DeployScript/WEBconfigure.xsl" />
+    <action type="ignition" seq="205" template="../templates/DeployScript/WEBignition.xsl" />
+    <action type="stop" seq="301" template="../templates/DeployScript/WEBstop.xsl" />
+    <action type="rubbos_uninstall" seq="405" template="../templates/DeployScript/RUBBOSuninstall.xsl" />
+    <action type="uninstall" seq="406" template="../templates/DeployScript/WEBuninstall.xsl" />
+  </instance>
+-->
+<!--
+  <instance name="MEMCACHE1" type="memcache_server">
+    <target>node21</target>
+    <action type="install" seq="14" template="../templates/DeployScript/MEMCACHEinstall.xsl"/>
+    <action type="rubbos_install" seq="19" template="../templates/DeployScript/RUBBOSinstall.xsl" /> -->
+<!--    <action type="configure" seq="103" template="../templates/DeployScript/MEMCACHEconfigure.xsl" /> -->
+<!--
+    <action type="ignition" seq="204" template="../templates/DeployScript/MEMCACHEignition.xsl" />
+    <action type="stop" seq="302" template="../templates/DeployScript/MEMCACHEstop.xsl" />
+  </instance>
+-->
 </instances>
 
 </xtbl>

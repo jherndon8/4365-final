@@ -1,11 +1,11 @@
-# 4411 Configuration
-#   - 1 Control
-#   - 1 Benchmark
-#   - 4 Clients
-#   - 4 Apache
-#   - 4 Tomcat
-#   - 1 CJDBC
-#   - 1 MySQL
+# 4411 Configuration    Nodes
+#   - 1 Control         node-0
+#   - 1 Benchmark       node-1
+#   - 4 Clients         node-2 to node-5
+#   - 4 Apache          node-6 to node-9
+#   - 4 Tomcat          node-10 to node-13
+#   - 1 CJDBC           node-14
+#   - 1 MySQL           node-15
 
 set ns [new Simulator]
 
@@ -35,12 +35,16 @@ for {set i 6} {$i < 16} {incr i} {
 }
 
 
-# TODO: Make lans
+# Make lans
 
+# Control, benchmark, clients, and Apache
 # lanstr includes nodes 0-5
 set lan0 [$ns make-lan "$lanstr $node-6 $node-7 $node-8 $node-9" 100Mb 0ms]
+# Apache, tomcat, cjdbc
 set lan1 [$ns make-lan "$node-6 $node-7 $node-8 $node-9 $node-10 $node-11 $node-12 $node-13 $node-14" 100Mb 0ms]
+# Cjdbc and MySQL
 set lan2 [$ns make-lan "$node-14 $node-15" 100Mb 0ms]	
+
 
 # Enable static routing
 $ns rtproto Static
